@@ -1,0 +1,39 @@
+<head>
+  <title>Eventbookning</title>
+</head>
+
+<body>
+	<div class="container">
+		<header>
+			<h1>Meteor eventbokning</h1>
+		</header>
+		<div class="main">
+		{{> eventbooking}}
+		</div>
+		<footer>Detta bokningssystem har skapats i utvecklingssyfte för kursen <a href="coursepress.lnu.se/kurs/moderna-applikationsmiljoer" title="Kursens webbsida">Moderna applikationsmiljöer <span>2DV400</span></a>. Den har i uppgift att visa lite om realtidswebben och hur man med javascripts-ramverket <a href="www.meteor.com" title="Meteors webbsida">Meteor</a> kan skapa applikationer som använder sig av just detta. Vi som har skapat denna applikation är Hans Bentlöv och Claes Tillborg och går tredje året på programmet <a href="coursepress.lnu.se/program/webbprogrammerare" title="Programmets webbsida">webbprogramering</a> på <a href="www.lnu.se" title="Linneuniversitetets webbsida">Linneuniversitetet</a> i Kalmar.</footer>
+	</div>
+  
+</body>
+
+<template name="eventbooking">
+    	<div class="eventlist four columns">
+			{{#each event}}
+				<div>
+					<h3>{{type}}</h3>
+					<p>{{name}}, <span>{{date}}</span></p>
+					<p>{{description}}</p>
+					<div>
+						<p>total: {{total_tickets}}</p>
+						<p>låsta: {{tickets_locked}}</p>
+						<p>bokade: {{tickets_booked}}</p>
+					</div>
+
+				</div>
+			{{/each}}
+			</ul>
+    	</div>
+    	<div class="twelve columns">
+
+    	</div>
+    	<br class="clear" />
+</template>
