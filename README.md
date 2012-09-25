@@ -1,0 +1,4 @@
+MeteorBookings
+==============
+
+An eventbookingsystem
