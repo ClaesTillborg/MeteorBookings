@@ -67,7 +67,7 @@ Meteor.startup(function() {
 
 //Begin by inserting events if none exists
 if ( Events.find({}).count() === 0 ) {
-  console.log("inserting enents");
+  console.log("inserting events");
   Events.insert({
           "type" : "Sport", 
           "name" : "Fotboll", 
