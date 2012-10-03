@@ -65,20 +65,66 @@ Meteor.startup(function() {
 });
 */
 
-//Begin by inserting events if none exists
-if ( Events.find({}).count() === 0 ) {
-  console.log("inserting events");
-  Events.insert({
-          "type" : "Sport", 
-          "name" : "Fotboll", 
-          "description" : "Mjällby AIF - Kalmar FF", 
-          "date" : new Date(),
-          "total_tickets" : 200,
-          "tickets_locked" : 0,
-          "tickets_booked" : 0
-      });
-  
+//Begin by inserting categories if none exist
+if ( Categories.find({}).count() === 0 ) {
+  var default_data = [];
+  console.log("inserting default categories!");
+  default_data = [
+    { "name" : "Musik" },
+    { "name" : "Festival" },
+    { "name" : "Sport" }
+  ];
+  for (var i = default_data.length - 1; i >= 0; i--) {
+    Categories.insert(default_data[i]);
+  };
 };
+//Begin by inserting events if none exist
+if ( Events.find({}).count() === 0 ) {
+  var default_data = [];
+  console.log("inserting default events!");
+  default_data = [
+  {
+    "category" : "Sport",
+    "name" : "Fotboll", 
+    "description" : "Mjällby AIF - Kalmar FF", 
+    "date" : new Date(),
+    "total_tickets" : 3000,
+    "tickets_locked" : 0,
+    "tickets_booked" : 0
+  },
+  {
+    "category" : "Sport",
+    "name" : "Fotboll", 
+    "description" : "AIK - Djurgården", 
+    "date" : new Date(),
+    "total_tickets" : 4000,
+    "tickets_locked" : 0,
+    "tickets_booked" : 0
+  },
+  {
+    "category" : "Festival",
+    "name" : "Swedenrock", 
+    "description" : "Rockfestival i Norje utanför Sölvesborg", 
+    "date" : new Date(),
+    "total_tickets" : 20000,
+    "tickets_locked" : 0,
+    "tickets_booked" : 0
+  },
+  {
+    "category" : "Musik",
+    "name" : "Konsert", 
+    "description" : "Ironmaiden på friend arena i Stockholm", 
+    "date" : new Date(),
+    "total_tickets" : 20000,
+    "tickets_locked" : 0,
+    "tickets_booked" : 0
+  }
+  ];
+  for (var i = default_data.length - 1; i >= 0; i--) {
+    Events.insert(default_data[i]);
+  };
+};
+
 /*
 Category : {
   "Name" : "string"

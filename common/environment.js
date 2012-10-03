@@ -1,3 +1,3 @@
 //	Global collections
-var Users = new Meteor.Collection("users");
+var Categories = new Meteor.Collection("categories");
 var Events = new Meteor.Collection("events");

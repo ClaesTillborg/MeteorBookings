@@ -17,17 +17,9 @@
 
 <template name="eventbooking">
     	<div class="eventlist four columns">
-			{{#each event}}
+			{{#each category}}
 				<div>
-					<h3>{{type}}</h3>
-					<p>{{name}}, <span>{{date}}</span></p>
-					<p>{{description}}</p>
-					<div>
-						<p>total: {{total_tickets}}</p>
-						<p>låsta: {{tickets_locked}}</p>
-						<p>bokade: {{tickets_booked}}</p>
-					</div>
-
+					<h3>{{name}} <span>({{numberOfEvents}})</span></h3>
 				</div>
 			{{/each}}
 			</ul>
