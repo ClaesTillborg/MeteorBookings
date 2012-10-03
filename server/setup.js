@@ -79,3 +79,18 @@ if ( Events.find({}).count() === 0 ) {
       });
   
 };
+/*
+Category : {
+  "Name" : "string"
+};
+
+"Event" : {
+  "Category" : Category_id,
+  "name" : "string", 
+  "description" : "string", 
+  "date" : new Date(),
+  "total_tickets" : int,
+  "tickets_locked" : 0,
+  "tickets_booked" : 0
+};
+*/
