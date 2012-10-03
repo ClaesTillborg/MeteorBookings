@@ -1,4 +1,8 @@
 /* CSS declarations go here */
-.eventlist {
+.categorylist {
 	border-right: 1px solid black;
+}
+.event {
+	margin-bottom: 20px;
+	border-bottom: 1px solid c6c6c6;
 }
