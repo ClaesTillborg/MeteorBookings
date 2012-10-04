@@ -5,6 +5,11 @@ Template.eventbooking.category = function () {
 Template.eventbooking.numberOfEvents = function () {
 	return Events.find({category: this.name}).count();
 };
+
+Template.eventbooking.isSelectedCategory = function () {
+  return Session.get("selectedCategory") || false;
+};
+
 Template.eventbooking.selectedCategory = function () {
 	return Categories.findOne(Session.get("selectedCategory"));
 };

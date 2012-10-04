@@ -1,3 +1,8 @@
+function insertEvent(attributes){
+  Meteor.call('insertEvent', attributes, Session.get('userid'));
+}
+
+
 /*
 
 //  Exampel of you can use functions for CUD

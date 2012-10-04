@@ -24,7 +24,12 @@
 			</ul>
 		</div>
 		<div class="therteen columns">
-			{{> eventlist}}
+			{{#if isSelectedCategory}}
+			  {{> eventlist}}
+			{{/if}}
+			{{#unless isSelectedCategory}}
+				<p>Startsida</p>
+			{{/unless}}
 		</div>
 		<br class="clear" />
 	</template>
