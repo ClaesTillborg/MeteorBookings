@@ -46,12 +46,20 @@
 			<div class="event">
 				<p><strong><a href="#" class="eventLink">{{name}}</a></strong> <span>{{date}}</span></br>
 				Beskrivning: {{description}}</br>
+				Plats: {{location}}</br>
 				låsta biljetter: {{tickets_locked}}</br>
 				Bokade biljetter: {{tickets_booked}}</p>
 			</div>
 		</div>
 		<div class="four columns omega">
-			Biljetter kvar: {{tickets_left}}
+			Biljetter kvar: {{ticketsLeft}}
+			<select class="bookingSelector">
+				<option>1</option>
+				<option>2</option>
+				<option>3</option>
+				<option>4</option>
+				<option>5</option>
+			</select>
 			<a href="#" class="setBooking">Boka</a>
 		</div>
 		<br class="clear" />

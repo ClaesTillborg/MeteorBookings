@@ -34,8 +34,8 @@ Template.eventPage.event = function() {
   return Events.findOne(Session.get("selectedEvent"));
 }
 
-Template.eventlist.tickets_left = function() {
+Template.eventlist.ticketsLeft = function() {
   var event = Events.findOne(this._id);
   var tickets_left = event.total_tickets - event.tickets_booked;
   return tickets_left;
-}
+};

@@ -14,9 +14,7 @@ Template.eventlist.events({
     //Session.set("selectedEvent", );
   },
   'click .setBooking': function() {
-    console.log("kadkhadb");
     Events.update({_id: this._id}, {$inc: {tickets_booked: 1}});
-    
   }
 });
 
