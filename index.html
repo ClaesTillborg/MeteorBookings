@@ -3,17 +3,32 @@
 	</head>
 
 	<body>
+		{{>modal}}
 		<div class="container">
-			
+
 			{{> eventbooking}}
-			
 			<footer>Detta bokningssystem har skapats i utvecklingssyfte för kursen <a href="http://coursepress.lnu.se/kurs/moderna-applikationsmiljoer" title="Kursens webbsida">Moderna applikationsmiljöer <span>2DV400</span></a>. Den har i uppgift att visa lite om realtidswebben och hur man med javascripts-ramverket <a href="http://www.meteor.com" title="Meteors webbsida">Meteor</a> kan skapa applikationer som använder sig av just detta. Vi som har skapat denna applikation är Hans Bentlöv och Claes Tillborg och går tredje året på programmet <a href="http://coursepress.lnu.se/program/webbprogrammerare" title="Programmets webbsida">webbprogramering</a> på <a href="http://www.lnu.se" title="Linneuniversitetets webbsida">Linneuniversitetet</a> i Kalmar.</footer>
 		</div>
 	</body>
 
+	<template name="modal">
+		{{#if isModalActive}}
+		<div class="modal-box wrapper">
+			<div class="inside">
+				<img src="images/warning.png" />
+	      <h3>Oops! There's been a problem.</h3>
+	      <p>Sorry, but we don't appear to be able to do what you asked. Please submit a bug report.</p>
+	      <span><span>Dismiss</span></span>
+	      <a href=""><span>Send Bug Report</span></a>
+			</div>
+		</div>
+    {{/if}}
+	</div>
+</template>
+
 	<template name="eventbooking">
 		<header>
-				<h1>Meteor eventbokning</h1>
+				<h1>Meteor eventbokning - <a href="#" class="pressMe">tryck på mig (några gånger) 	för popuptest!</a></h1>
 				<input type="text" id="searchBox" placeholder="Filtrera evenemang"/>
 			</header>
 			<div class="main">

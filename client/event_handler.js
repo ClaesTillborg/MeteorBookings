@@ -19,6 +19,9 @@ Template.eventbooking.events({
   'keyup #searchBox': function() {
     var query = document.getElementById("searchBox").value;
     Session.set("query", query);
+  },
+  'click .pressMe': function() {
+    Session.equals("isModalActive", false) ? Session.set("isModalActive", true) : Session.set("isModalActive", false);
   }
 });
 

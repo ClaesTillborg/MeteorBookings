@@ -1,3 +1,16 @@
+Meteor.methods({
+  doBooking: function(eventId, amount){ 
+  console.log("doBooking!" + Session.get("isBooked"));  
+    Meteor.setTimeout(function(){
+      //if (Session.equals("isBooked", null)) {
+        console.log("Aaaaaaaand its gone!");
+        Events.update({_id: "5e1b2d6d-72d1-4988-8c1d-8d4ad907c5bb"}, {$inc: {tickets_booked: -10}});
+      
+    }, 3000);
+  }
+});
+      
+
 /*
 
 Exemple of setup funktions

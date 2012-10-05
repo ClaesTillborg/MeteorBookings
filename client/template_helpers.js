@@ -1,3 +1,14 @@
+Template.modal.isModalActive = function() {
+	return Session.equals("isModalActive", true);
+};
+
+/*
+Kod som körs när modal-templaten är renderad så man fejdar in divven när allt i den
+ */
+Template.modal.rendered = function() {
+      $('div.modal-box').hide().fadeIn('slow');
+};
+
 Template.eventbooking.categories = function () {
 	return Categories.find({}, {sort: {name: 1}});
 };
