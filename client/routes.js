@@ -1,32 +1,41 @@
 var myRoutes = Backbone.Router.extend({
   
   routes: {
+    "":             "start",    
+    ":category":    "category",    // #category
+    ":category/:eventId":       "event"       // #event
+  },
 
-    "category/:query":    "category",    // #category
-    "event/:query":       "event"       // #event
+  start: function() {
+    Session.set("selectedEvent", null);
+    Session.set("selectedCategory", null);
   },
 
   category: function(categoryName) {
     console.log("category route!");
-    Session.set("selectedEvent", false); 
+    Session.set("selectedEvent", null);
     Session.set("selectedCategory", categoryName);
   },
 
-  event: function(eventId) {
-    console.log("chaning categor");
-    Session.set("selectedCategory", "");
+  event: function(category, eventId) {
+    console.log(category);
+    Session.set("selectedCategory", null); 
     console.log(Session.get("selectedCategory"));
     Session.set("selectedEvent", eventId); 
   },
 
-  setEvent: function(eventId) {
+  setStart: function() {
+    this.navigate("");
+  },
+
+  setEvent: function(category, eventId) {
     console.log("setEvent");
-    this.navigate("event/" + eventId);
+    this.navigate(category + "/" + eventId);
   },
 
   setCategory: function(categoryName) {
     console.log("setCategory");
-    this.navigate("category/" + categoryName);
+    this.navigate(categoryName);
   }
 });
 
