@@ -85,18 +85,40 @@ if ( Events.find({}).count() === 0 ) {
   default_data = [
   {
     "category" : "Sport",
-    "name" : "Fotboll", 
-    "description" : "Mjällby AIF - Kalmar FF", 
+    "name" : "Mjällby AIF - Kalmar FF", 
+    "description" : "Fotboll", 
     "date" : new Date(),
+    "location" : "Hällevik, Sölvesborg",
     "total_tickets" : 3000,
     "tickets_locked" : 0,
     "tickets_booked" : 0
   },
   {
     "category" : "Sport",
-    "name" : "Fotboll", 
-    "description" : "AIK - Djurgården", 
+    "name" : "AIK - Djurgården", 
+    "description" : "Fotboll", 
     "date" : new Date(),
+    "location" : "Råsunda, Stockholm",
+    "total_tickets" : 4000,
+    "tickets_locked" : 0,
+    "tickets_booked" : 0
+  },
+  {
+    "category" : "Sport",
+    "name" : "HV71 - MODO", 
+    "description" : "Hockey", 
+    "date" : new Date(),
+    "location" : "Kinnarps arena, Jönköping",
+    "total_tickets" : 4000,
+    "tickets_locked" : 0,
+    "tickets_booked" : 0
+  },
+  {
+    "category" : "Sport",
+    "name" : "Västrafrölunda - Brynäs", 
+    "description" : "Hockey", 
+    "date" : new Date(),
+    "location" : "Scandinavium, Göteborg",
     "total_tickets" : 4000,
     "tickets_locked" : 0,
     "tickets_booked" : 0
@@ -104,18 +126,50 @@ if ( Events.find({}).count() === 0 ) {
   {
     "category" : "Festival",
     "name" : "Swedenrock", 
-    "description" : "Rockfestival i Norje utanför Sölvesborg", 
+    "description" : "Rockfestival", 
     "date" : new Date(),
+    "location" : "Norje, Sölvesborg",
+    "total_tickets" : 20000,
+    "tickets_locked" : 0,
+    "tickets_booked" : 0
+  },
+  {
+    "category" : "Festival",
+    "name" : "Peace and love", 
+    "description" : "Popfestival", 
+    "date" : new Date(),
+    "location" : "Bårlänge",
     "total_tickets" : 20000,
     "tickets_locked" : 0,
     "tickets_booked" : 0
   },
   {
     "category" : "Musik",
-    "name" : "Konsert", 
-    "description" : "Ironmaiden på friend arena i Stockholm", 
+    "name" : "Ironmaiden", 
+    "description" : "Konsert", 
     "date" : new Date(),
+    "location" : "Friends arena, Stockholm",
     "total_tickets" : 20000,
+    "tickets_locked" : 0,
+    "tickets_booked" : 0
+  },
+  {
+    "category" : "Musik",
+    "name" : "Sabaton", 
+    "description" : "Konsert", 
+    "date" : new Date(),
+    "location" : "Palace, Kalmar",
+    "total_tickets" : 500,
+    "tickets_locked" : 0,
+    "tickets_booked" : 0
+  },
+  {
+    "category" : "Musik",
+    "name" : "Stonesour", 
+    "description" : "Konsert", 
+    "date" : new Date(),
+    "location" : "Annexet, Stockholm",
+    "total_tickets" : 500,
     "tickets_locked" : 0,
     "tickets_booked" : 0
   }
@@ -131,12 +185,13 @@ Category : {
 };
 
 "Event" : {
-  "Category" : Category_id,
-  "name" : "string", 
-  "description" : "string", 
-  "date" : new Date(),
-  "total_tickets" : int,
-  "tickets_locked" : 0,
-  "tickets_booked" : 0
-};
+    "category" : string,
+    "name" : string, 
+    "description" : string, 
+    "date" : new Date(),
+    "location" : string,
+    "total_tickets" : int,
+    "tickets_locked" : 0,
+    "tickets_booked" : 0
+  };
 */
