@@ -55,14 +55,13 @@
 		</div>
 		<div class="four columns omega">
 			Biljetter kvar: {{ticketsLeft}}
+			<label for="select_{{_id}}">Välj antal biljetter 1-10</label>
 			<select id="select_{{_id}}">
-				<option>1</option>
-				<option>2</option>
-				<option>3</option>
-				<option>4</option>
-				<option>5</option>
+				{{#each selector}}
+					<option value="{{number}}">{{number}}</option>
+				{{/each}}
 			</select>
-			<a href="#" class="setBooking">Boka</a>
+			<input class="setBooking" type="button" name="setBooking" value="Boka">
 		</div>
 		<br class="clear" />
 		{{/each}}

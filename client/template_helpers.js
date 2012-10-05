@@ -43,7 +43,23 @@ Template.eventPage.event = function() {
 };
 
 Template.eventlist.ticketsLeft = function() {
-  var event = Events.findOne(this._id);
-  var tickets_left = event.total_tickets - event.tickets_booked;
+  var tickets_left = this.total_tickets - this.tickets_booked;
   return tickets_left;
+};
+Template.eventlist.selector = function() {
+	var tickets_left = this.total_tickets - this.tickets_booked;
+	var ret = [];
+	if (tickets_left > 0) {
+		var count
+		if (tickets_left > 10) {
+			count = 10;
+		}
+		else{
+			count = tickets_left;
+		};
+		for (var i = 0; i < count; i++) {
+				ret[i] = { "number": i + 1 };
+		};
+	};
+	return ret;
 };
