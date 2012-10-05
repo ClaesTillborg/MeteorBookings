@@ -5,10 +5,9 @@
 	<body>
 		<div class="container">
 			
+			{{> eventbooking}}
 			
-				{{> eventbooking}}
-			
-			<footer>Detta bokningssystem har skapats i utvecklingssyfte för kursen <a href="http://coursepress.lnu.se/kurs/moderna-applikationsmiljoer" title="Kursens webbsida">Moderna applikationsmiljöer <span>2DV400</span></a>. Den har i uppgift att visa lite om realtidswebben och hur man med javascripts-ramverket <a href="www.meteor.com" title="Meteors webbsida">Meteor</a> kan skapa applikationer som använder sig av just detta. Vi som har skapat denna applikation är Hans Bentlöv och Claes Tillborg och går tredje året på programmet <a href="coursepress.lnu.se/program/webbprogrammerare" title="Programmets webbsida">webbprogramering</a> på <a href="www.lnu.se" title="Linneuniversitetets webbsida">Linneuniversitetet</a> i Kalmar.</footer>
+			<footer>Detta bokningssystem har skapats i utvecklingssyfte för kursen <a href="http://coursepress.lnu.se/kurs/moderna-applikationsmiljoer" title="Kursens webbsida">Moderna applikationsmiljöer <span>2DV400</span></a>. Den har i uppgift att visa lite om realtidswebben och hur man med javascripts-ramverket <a href="http://www.meteor.com" title="Meteors webbsida">Meteor</a> kan skapa applikationer som använder sig av just detta. Vi som har skapat denna applikation är Hans Bentlöv och Claes Tillborg och går tredje året på programmet <a href="http://coursepress.lnu.se/program/webbprogrammerare" title="Programmets webbsida">webbprogramering</a> på <a href="http://www.lnu.se" title="Linneuniversitetets webbsida">Linneuniversitetet</a> i Kalmar.</footer>
 		</div>
 	</body>
 
@@ -19,7 +18,7 @@
 			<div class="main">
 		<div class="categorylist three columns">
 			<ul>
-			{{#each category}}
+			{{#each categories}}
 				<li><a href="#" class="{{categoryClass}} {{name}}">{{name}}<span> ({{numberOfEvents}})</span></a></li>
 			{{/each}}
 			</ul>

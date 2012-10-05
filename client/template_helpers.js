@@ -1,4 +1,4 @@
-Template.eventbooking.category = function () {
+Template.eventbooking.categories = function () {
 	return Categories.find({}, {sort: {name: 1}});
 };
 
