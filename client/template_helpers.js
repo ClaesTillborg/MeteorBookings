@@ -31,12 +31,16 @@ Template.eventbooking.selectedEvent = function () {
 };
 
 Template.eventlist.event = function () {
+  if (Session.get("query")) {
+
+    return Events.find({"name": {"$regex": Session.get("query")}}, {sort: {date: 1, name: 1}});
+  };
 	return Events.find({category: Session.get("selectedCategory")}, {sort: {date: 1, name: 1}});
 };
 
 Template.eventPage.event = function() {
   return Events.findOne(Session.get("selectedEvent"));
-}
+};
 
 Template.eventlist.ticketsLeft = function() {
   var event = Events.findOne(this._id);

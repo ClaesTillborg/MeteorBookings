@@ -3,8 +3,22 @@ Template.eventbooking.events({
     Router.setCategory(this.name);
     //Session.set("selectedCategory", this.name);
   },
+
   'click .header': function() {
     Router.setStart();
+  },
+
+  'focus #searchBox': function() {
+    console.log("Start searching!!!");
+  },
+
+  'blur #searchBox': function() {
+    Session.set("query", false);
+  },
+
+  'keyup #searchBox': function() {
+    var query = document.getElementById("searchBox").value;
+    Session.set("query", query);
   }
 });
 
@@ -14,7 +28,8 @@ Template.eventlist.events({
     //Session.set("selectedEvent", );
   },
   'click .setBooking': function() {
-    Events.update({_id: this._id}, {$inc: {tickets_booked: 1}});
+    var numberBooked = parseInt(document.getElementById("select_" + this._id).value);
+    Events.update({_id: this._id}, {$inc: {tickets_booked: numberBooked}});
   }
 });
 
