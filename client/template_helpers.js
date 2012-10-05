@@ -2,6 +2,10 @@ Template.eventbooking.categories = function () {
 	return Categories.find({}, {sort: {name: 1}});
 };
 
+Template.eventbooking.totalNumberOfEvents = function () {
+	return Events.find({}).count();
+};
+
 Template.eventbooking.numberOfEvents = function () {
 	return Events.find({category: this.name}).count();
 };
@@ -27,7 +31,7 @@ Template.eventbooking.selectedEvent = function () {
 };
 
 Template.eventlist.event = function () {
-	return Events.find({category: Session.get("selectedCategory")}, {sort: {date: 1}});
+	return Events.find({category: Session.get("selectedCategory")}, {sort: {date: 1, name: 1}});
 };
 
 Template.eventPage.event = function() {
