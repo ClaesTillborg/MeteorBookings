@@ -87,3 +87,30 @@ Template.eventlist.selector = function() {
 	};
 	return ret;
 };
+
+Handlebars.registerHelper("bookingSelector", function(obj) {
+	var tickets_left = obj.total_tickets - obj.tickets_booked;
+	var ret = '';
+	var count = 0;
+
+	if (tickets_left > 0) {
+		ret = '<label for="select_' + obj._id + '">Antal biljetter</label>';
+		ret += '<select id="select_' + obj._id + '">';
+		if (tickets_left > 10) {
+			count = 10;
+		}
+		else {
+			count = tickets_left;
+		};
+		for (var i = 1; i <= count; i++) {
+				ret += '<option value="' + i + '">' + i + '</option>';
+		};
+		ret += '</select>';
+		ret += '<input class="setBooking" type="button" name="setBooking" value="Boka">';
+	}
+	else {
+		ret = '<span class="soldOut">Inga biljetter kvar!</span>';
+	};
+	
+	return new Handlebars.SafeString(ret);
+});
