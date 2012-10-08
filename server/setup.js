@@ -192,19 +192,54 @@ if ( Events.find({}).count() === 0 ) {
   };
 };
 
+//Begin by inserting posts if none exist
+if ( Posts.find({}).count() === 0 ) {
+  var default_data = [];
+  console.log("inserting default posts!");
+  default_data = [
+  {
+    "title" : "title",
+    "date" : new Date(),
+    "userId" : "userId",
+    "content" : "content",
+      "comments" : [
+      {
+        "userId" : "userId",
+        "date" : new Date(),
+        "content" : "comment"
+      }
+      ]
+  }
+  ];
+  for (var i = default_data.length - 1; i >= 0; i--) {
+    Posts.insert(default_data[i]);
+  };
+};
 /*
 Category : {
   "Name" : "string"
 };
 
 "Event" : {
-    "category" : string,
-    "name" : string, 
-    "description" : string, 
+  "category" : string,
+  "name" : string, 
+  "description" : string, 
+  "date" : new Date(),
+  "location" : string,
+  "total_tickets" : int,
+  "tickets_locked" : 0,
+  "tickets_booked" : 0
+};
+
+"Post" : {
+  "title" : string,
+  "date" : new date(),
+  "userId" : string,
+  "content" : string,
+  "comments" : {
+    "userId" : string,
     "date" : new Date(),
-    "location" : string,
-    "total_tickets" : int,
-    "tickets_locked" : 0,
-    "tickets_booked" : 0
-  };
+    "content" : string
+  }
+};
 */
