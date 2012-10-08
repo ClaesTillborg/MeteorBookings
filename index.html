@@ -41,16 +41,16 @@
 			</ul>
 		</div>
 		<div class="thirteen columns">		
+		{{#if isSelectedCategory}}
 			{{#if isSelectedEvent}}
 			  {{> eventPage}} 
 			{{else}}
-				{{#if isSelectedCategory}}
-				  {{> eventlist}}
-				{{/if}}
+			  {{> eventlist}}
 			{{/if}}
-			{{#unless isSelectedCategory}}
-				<p>Startsida</p>
-			{{/unless}}
+		{{/if}}
+		{{#unless isSelectedCategory}}
+			<p>Startsida</p>
+		{{/unless}}
 		</div>
 		<br class="clear" />
 		</div>
@@ -62,9 +62,9 @@
 		<div class="nine columns alpha">
 			<div class="event">
 				<p><strong><a href="#" class="eventLink">{{name}}</a></strong> <span>{{formatDate date}}</span></br>
-				Beskrivning: {{description}}</br>
 				Plats: {{location}}</br>
-				låsta biljetter: {{tickets_locked}}</br>
+				Beskrivning: {{description}}</br>
+				Låsta biljetter: {{tickets_locked}}</br>
 				Bokade biljetter: {{tickets_booked}}</p>
 			</div>
 		</div>
@@ -77,16 +77,17 @@
 
 	<template name="eventPage">
 		{{#with event}}
-			<div class="four columns alpha">
-				<h2>{{name}}</h2>
+			<div class="nine columns alpha">
+				<h2>{{name}}</h2><span>({{formatDate date}})</span>
+				<p>Plats: {{location}}</br>
+				Beskrivning: {{description}}</br>
+				Låsta biljetter: {{tickets_locked}}</br>
+				Bokade biljetter: {{tickets_booked}}</p>
 			</div>
-			<div class="four columns alpha omega">
-				{{date}}
-			</div>
-			<div class="five colums omega">
-				{{description}}
-			</div>
-
+			<div class="four columns omega">
+			{{bookingSection this}}
+		</div>
+		<br class="clear" />
 		{{/with}}
 		
 	</template>
