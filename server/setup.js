@@ -2,7 +2,7 @@ Meteor.methods({
   doBooking: function(eventId, amount){ 
   console.log("doBooking!" + Session.get("isBooked"));  
     Meteor.setTimeout(function(){
-      //if (Session.equals("isBooked", null)) {
+      //if (Session.equ0als("isBooked", null)) {
         console.log("Aaaaaaaand its gone!");
         Events.update({_id: "5e1b2d6d-72d1-4988-8c1d-8d4ad907c5bb"}, {$inc: {tickets_booked: -10}});
       
@@ -100,7 +100,7 @@ if ( Events.find({}).count() === 0 ) {
     "category" : "Sport",
     "name" : "Mjällby AIF - Kalmar FF", 
     "description" : "Fotboll", 
-    "date" : new Date(2014, 04, 15),
+    "date" : new Date(2014, 04, 15, 15, 45, 00),
     "location" : "Hällevik, Sölvesborg",
     "total_tickets" : 3000,
     "tickets_locked" : 0,
@@ -110,7 +110,7 @@ if ( Events.find({}).count() === 0 ) {
     "category" : "Sport",
     "name" : "AIK - Djurgården", 
     "description" : "Fotboll", 
-    "date" : new Date(2014, 04, 15),
+    "date" : new Date(2021, 04, 15, 15, 45, 00),
     "location" : "Råsunda, Stockholm",
     "total_tickets" : 4000,
     "tickets_locked" : 0,
@@ -120,7 +120,7 @@ if ( Events.find({}).count() === 0 ) {
     "category" : "Sport",
     "name" : "HV71 - MODO", 
     "description" : "Hockey", 
-    "date" : new Date(),
+    "date" : new Date(2012, 02, 16, 10, 45, 00),
     "location" : "Kinnarps arena, Jönköping",
     "total_tickets" : 4000,
     "tickets_locked" : 0,
@@ -130,7 +130,7 @@ if ( Events.find({}).count() === 0 ) {
     "category" : "Sport",
     "name" : "Västrafrölunda - Brynäs", 
     "description" : "Hockey", 
-    "date" : new Date(),
+    "date" : new Date(2012, 07, 20, 19, 00, 00),
     "location" : "Scandinavium, Göteborg",
     "total_tickets" : 4000,
     "tickets_locked" : 0,
@@ -140,7 +140,7 @@ if ( Events.find({}).count() === 0 ) {
     "category" : "Festival",
     "name" : "Swedenrock", 
     "description" : "Rockfestival", 
-    "date" : new Date(),
+    "date" : new Date(2013, 06, 03, 09, 00, 00),
     "location" : "Norje, Sölvesborg",
     "total_tickets" : 20000,
     "tickets_locked" : 0,
@@ -150,7 +150,7 @@ if ( Events.find({}).count() === 0 ) {
     "category" : "Festival",
     "name" : "Peace and love", 
     "description" : "Popfestival", 
-    "date" : new Date(),
+    "date" : new Date(2015, 04, 15, 15, 45, 00),
     "location" : "Bårlänge",
     "total_tickets" : 20000,
     "tickets_locked" : 0,
@@ -160,7 +160,7 @@ if ( Events.find({}).count() === 0 ) {
     "category" : "Musik",
     "name" : "Ironmaiden", 
     "description" : "Konsert", 
-    "date" : new Date(),
+    "date" : new Date(2018, 04, 10, 15, 45, 00),
     "location" : "Friends arena, Stockholm",
     "total_tickets" : 20000,
     "tickets_locked" : 0,
@@ -170,7 +170,7 @@ if ( Events.find({}).count() === 0 ) {
     "category" : "Musik",
     "name" : "Sabaton", 
     "description" : "Konsert", 
-    "date" : new Date(),
+    "date" : new Date(2012, 08, 23, 20, 00, 00),
     "location" : "Palace, Kalmar",
     "total_tickets" : 500,
     "tickets_locked" : 0,
@@ -180,7 +180,7 @@ if ( Events.find({}).count() === 0 ) {
     "category" : "Musik",
     "name" : "Stonesour", 
     "description" : "Konsert", 
-    "date" : new Date(),
+    "date" : new Date(2014, 04, 15, 15, 45, 00),
     "location" : "Annexet, Stockholm",
     "total_tickets" : 500,
     "tickets_locked" : 0,

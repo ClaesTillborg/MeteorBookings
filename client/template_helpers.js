@@ -57,9 +57,22 @@ Template.eventlist.ticketsLeft = function() {
   var tickets_left = this.total_tickets - this.tickets_booked;
   return tickets_left;
 };
+
+Handlebars.registerHelper('formatDate', function(date) {
+	var date = new Date(date);
+	months = new Array("Januari","Februari","Mars","April","Maj","Juni","Juli","Augusti","September","Oktober","November","December");
+	days = new Array("söndag","Måndag","Tisdag","Onsdag","Torsdag","Fredag","Lördag");
+	var month = months[date.getMonth()];
+	var dayName = days[date.getDay()];
+	var ret = dayName + " " + date.getDate() + " " + month + " " + date.getFullYear();
+	return new Handlebars.SafeString(ret);
+
+});
+
 Template.eventlist.selector = function() {
 	var tickets_left = this.total_tickets - this.tickets_booked;
 	var ret = [];
+
 	if (tickets_left > 0) {
 		var count
 		if (tickets_left > 10) {

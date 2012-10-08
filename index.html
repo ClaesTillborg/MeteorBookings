@@ -61,7 +61,7 @@
 		{{#each event}}
 		<div class="nine columns alpha">
 			<div class="event">
-				<p><strong><a href="#" class="eventLink">{{name}}</a></strong> <span>{{date}}</span></br>
+				<p><strong><a href="#" class="eventLink">{{name}}</a></strong> <span>{{formatDate date}}</span></br>
 				Beskrivning: {{description}}</br>
 				Plats: {{location}}</br>
 				låsta biljetter: {{tickets_locked}}</br>
@@ -72,9 +72,11 @@
 			Biljetter kvar: {{ticketsLeft}}
 			<label for="select_{{_id}}">Välj antal biljetter 1-10</label>
 			<select id="select_{{_id}}">
+
 				{{#each selector}}
 					<option value="{{number}}">{{number}}</option>
 				{{/each}}
+
 			</select>
 			<input class="setBooking" type="button" name="setBooking" value="Boka">
 		</div>
