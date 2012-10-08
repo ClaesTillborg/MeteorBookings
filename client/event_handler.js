@@ -34,7 +34,7 @@ Template.eventlist.events({
   'click .setBooking': function() {
   	//Get number of tickets to book and update the collection object.
     var numberBooked = parseInt(document.getElementById("select_" + this._id).value);
-    Events.update({_id: this._id}, {$inc: {tickets_booked: numberBooked}});
+    Meteor.call("book", this._id, numberBooked);
   }
 });
 

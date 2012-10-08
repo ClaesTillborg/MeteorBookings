@@ -32,14 +32,17 @@
 				<input type="text" id="searchBox" placeholder="Filtrera evenemang"/>
 			</header>
 			<div class="main">
-		<div class="categorylist three columns">
+
+		<div class="three columns">
 			<ul>
 				<li><a href="#" class="{{categoryClass}} all">Alla evenemang<span> ({{totalNumberOfEvents}})</span></a></li>
 			{{#each categories}}
 				<li><a href="#" class="{{categoryClass}} {{name}}">{{name}}<span> ({{numberOfEvents}})</span></a></li>
 			{{/each}}
 			</ul>
+			{{> loginButtons}}
 		</div>
+		
 		<div class="thirteen columns">		
 			{{#if isSelectedEvent}}
 			  {{> eventPage}} 

@@ -1,15 +1,12 @@
 Meteor.methods({
-  doBooking: function(eventId, amount){ 
-  console.log("doBooking!" + Session.get("isBooked"));  
-    Meteor.setTimeout(function(){
-      //if (Session.equ0als("isBooked", null)) {
-        console.log("Aaaaaaaand its gone!");
-        Events.update({_id: "5e1b2d6d-72d1-4988-8c1d-8d4ad907c5bb"}, {$inc: {tickets_booked: -10}});
-      
-    }, 3000);
+  book: function(eventId, amount) { 
+    console.log("doBooking!");  
+    Events.update({_id: eventId}, {$inc: {tickets_booked: amount}});
+  },
+  unbook: function(eventId, amount) {
+    Events.update({_id: eventId}, {$inc: {tickets_booked: amount}});
   }
-});
-      
+});  
 
 /*
 
