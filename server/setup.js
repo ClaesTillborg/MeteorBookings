@@ -194,25 +194,9 @@ if ( Events.find({}).count() === 0 ) {
 
 //Begin by inserting posts if none exist
 if ( Posts.find({}).count() === 0 ) {
-  var default_data = [];
   console.log("inserting default posts!");
-  default_data = [
-  {
-    "title" : "title",
-    "date" : new Date(),
-    "userId" : "userId",
-    "content" : "content",
-      "comments" : [
-      {
-        "userId" : "userId",
-        "date" : new Date(),
-        "content" : "comment"
-      }
-      ]
-  }
-  ];
-  for (var i = default_data.length - 1; i >= 0; i--) {
-    Posts.insert(default_data[i]);
+  for (var i = defaultPosts.length - 1; i >= 0; i--) {
+    Posts.insert(defaultPosts[i]);
   };
 };
 /*
@@ -241,5 +225,9 @@ Category : {
     "date" : new Date(),
     "content" : string
   }
+  ],
+  "likes" : [
+  { "name" : "name" }
+  ]
 };
 */

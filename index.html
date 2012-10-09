@@ -96,10 +96,12 @@
 	<h2>Meteorbloggen</h2>
 	
 	<aside class="three columns postLinkList">
+		<h3>Inlägg:</h3>
+		<ol>
 		{{#each postLinks}}
-			<h3 class="postLink"><a href="#{{_id}}">{{title}}</a></h3>
+			<li><a class="postLink" href="#{{_id}}">{{title}}</a></li>
 		{{/each}}
-		</ul>
+		</ol>
 	</aside>
 
 	<section class="thirteen columns">
@@ -107,36 +109,37 @@
 			<div class="post" id="{{_id}}">
 				<h3>{{title}}</h3>
 				
-				<aside class="three columns">
+				<aside class="three columns alpha">
 					<dl>
 					  <dt>Publicerad:</dt>
 					    <dd>{{formatDate date}}</dd>
 					  <dt>Författare:</dt>
-					    <dd>{{auther userId}}</dd>
+					    <dd>{{userName}}</dd>
 					  <dt>Kommentarer:</dt>
 					  	<dd>{{totalComments}} kommentarer</dd>
 					</dl>
 				</aside>
 
-				<article class="nine columns">
-					<p>{{content}}</p>
-					<div class="commentList">
-						<h4>Kommentarer:</h4>
+				<article class="ten columns omega contentWraper">
+					<p class="postContent">{{content}}</p>
+				</article>
+				<br class="clear" />
+				<div class="commentList">
+					<h4>Kommentarer:</h4>
 					{{#each comments}}
 						<div class="comment">
 							<p>
-								<strong>{{auther userId}}</strong>: {{content}}<span><br>
+								<strong>{{userName}}</strong>: {{content}}<span><br>
 								<em>{{formatDate date}}</em></span>
 							</p>
-							
 						</div>
 					{{/each}}
-					</div>
-					<div class="commentBox">
-						<input type="text" id="addToPost_{{_id}}" placeholder="Skriv kommentar..." />
-						<input type="button" class="addComment" value="skicka"/>
-					</div>		
-				</article>
+				</div>
+
+				<div class="commentBox">
+					<input type="text" id="addToPost_{{_id}}" placeholder="Skriv kommentar..." />
+					<input type="button" class="addComment" value="skicka"/>
+				</div>		
 
 			</div>
 		{{/each}}
@@ -147,4 +150,5 @@
 			<input type="button" class="addPost" value="skicka" />
 		</div>
 	</section>
+	<br class="clear" />
 </template>

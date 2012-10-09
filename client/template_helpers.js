@@ -54,11 +54,11 @@ Template.eventPage.event = function() {
 };
 
 Template.blogPage.postLinks = function() {
-	return Posts.find({}, {fields: {title: 1}});
+	return Posts.find({}, {sort: {date: -1}, fields: {title: 1}});
 };
 
 Template.blogPage.post = function() {
-	return Posts.find({});
+	return Posts.find({}, {sort: {date: -1}});
 };
 
 Template.blogPage.totalComments = function() {
@@ -105,7 +105,7 @@ Handlebars.registerHelper("bookingSection", function(obj) {
 	return new Handlebars.SafeString(ret);
 });
 
-Handlebars.registerHelper('auther', function(userId) {
+Handlebars.registerHelper('author', function(userId) {
 //TODO: return User.findOne({_id : userId}, {fields: {name: 1}});
 	return "Claes Tillborg";
 });
