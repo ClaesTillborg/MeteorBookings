@@ -53,11 +53,20 @@ Template.eventPage.event = function() {
   return Events.findOne(Session.get("selectedEvent"));
 };
 
-Template.eventlist.ticketsLeft = function() {
-  var tickets_left = this.total_tickets - this.tickets_booked;
-  return tickets_left;
+Template.blogPage.postLinks = function() {
+	return Posts.find({}, {sort: {date: -1}, fields: {title: 1}});
 };
 
+Template.blogPage.post = function() {
+	return Posts.find({}, {sort: {date: -1}});
+};
+
+Template.blogPage.totalComments = function() {
+	var comments = this.comments;
+	return comments.length;
+};
+
+//--------------------------------------------------Helpers----------------------------------------------------->
 Handlebars.registerHelper('formatDate', function(date) {
 	var date = new Date(date);
 	months = new Array("Januari","Februari","Mars","April","Maj","Juni","Juli","Augusti","September","Oktober","November","December");
@@ -69,38 +78,19 @@ Handlebars.registerHelper('formatDate', function(date) {
 
 });
 
-Template.eventlist.selector = function() {
-	var tickets_left = this.total_tickets - this.tickets_booked;
-	var ret = [];
-
-	if (tickets_left > 0) {
-		var count
-		if (tickets_left > 10) {
-			count = 10;
-		}
-		else{
-			count = tickets_left;
-		};
-		for (var i = 0; i < count; i++) {
-				ret[i] = { "number": i + 1 };
-		};
-	};
-	return ret;
-};
-
-Handlebars.registerHelper("bookingSelector", function(obj) {
-	var tickets_left = obj.total_tickets - obj.tickets_booked;
-	var ret = '';
+Handlebars.registerHelper("bookingSection", function(obj) {
+	var ticketsLeft = obj.total_tickets - obj.tickets_booked;
+	var ret = '<span>Biljetter kvar: ' + ticketsLeft + '</span>';
 	var count = 0;
 
-	if (tickets_left > 0) {
-		ret = '<label for="select_' + obj._id + '">Antal biljetter</label>';
+	if (ticketsLeft > 0) {
+		ret += '<label for="select_' + obj._id + '">Antal biljetter</label>';
 		ret += '<select id="select_' + obj._id + '">';
-		if (tickets_left > 10) {
+		if (ticketsLeft > 10) {
 			count = 10;
 		}
 		else {
-			count = tickets_left;
+			count = ticketsLeft;
 		};
 		for (var i = 1; i <= count; i++) {
 				ret += '<option value="' + i + '">' + i + '</option>';
@@ -109,8 +99,13 @@ Handlebars.registerHelper("bookingSelector", function(obj) {
 		ret += '<input class="setBooking" type="button" name="setBooking" value="Boka">';
 	}
 	else {
-		ret = '<span class="soldOut">Inga biljetter kvar!</span>';
+		ret += '<span class="soldOut">Inga biljetter kvar!</span>';
 	};
 	
 	return new Handlebars.SafeString(ret);
+});
+
+Handlebars.registerHelper('author', function(userId) {
+//TODO: return User.findOne({_id : userId}, {fields: {name: 1}});
+	return "Claes Tillborg";
 });
