@@ -78,120 +78,25 @@ Meteor.startup(function() {
 });
 */
 
+
+
+//============================================================================
+//Feching default data from defaultData.js if none exists
+
 //Begin by inserting categories if none exist
 if ( Categories.find({}).count() === 0 ) {
-  var default_data = [];
   console.log("inserting default categories!");
-  default_data = [
-    { "name" : "Musik" },
-    { "name" : "Festival" },
-    { "name" : "Sport" }
-  ];
-  for (var i = default_data.length - 1; i >= 0; i--) {
-    Categories.insert(default_data[i]);
+  for (var i = defaultCategories.length - 1; i >= 0; i--) {
+    Categories.insert(defaultCategories[i]);
   };
 };
 //Begin by inserting events if none exist
 if ( Events.find({}).count() === 0 ) {
-  var default_data = [];
   console.log("inserting default events!");
-  default_data = [
-  {
-    "category" : "Sport",
-    "name" : "Mjällby AIF - Kalmar FF", 
-    "description" : "Fotboll", 
-    "date" : new Date(2014, 04, 15, 15, 45, 00),
-    "location" : "Hällevik, Sölvesborg",
-    "total_tickets" : 3000,
-    "tickets_locked" : 0,
-    "tickets_booked" : 0
-  },
-  {
-    "category" : "Sport",
-    "name" : "AIK - Djurgården", 
-    "description" : "Fotboll", 
-    "date" : new Date(2021, 04, 15, 15, 45, 00),
-    "location" : "Råsunda, Stockholm",
-    "total_tickets" : 4000,
-    "tickets_locked" : 0,
-    "tickets_booked" : 0
-  },
-  {
-    "category" : "Sport",
-    "name" : "HV71 - MODO", 
-    "description" : "Hockey", 
-    "date" : new Date(2012, 02, 16, 10, 45, 00),
-    "location" : "Kinnarps arena, Jönköping",
-    "total_tickets" : 4000,
-    "tickets_locked" : 0,
-    "tickets_booked" : 0
-  },
-  {
-    "category" : "Sport",
-    "name" : "Västrafrölunda - Brynäs", 
-    "description" : "Hockey", 
-    "date" : new Date(2012, 07, 20, 19, 00, 00),
-    "location" : "Scandinavium, Göteborg",
-    "total_tickets" : 4000,
-    "tickets_locked" : 0,
-    "tickets_booked" : 0
-  },
-  {
-    "category" : "Festival",
-    "name" : "Swedenrock", 
-    "description" : "Rockfestival", 
-    "date" : new Date(2013, 06, 03, 09, 00, 00),
-    "location" : "Norje, Sölvesborg",
-    "total_tickets" : 20000,
-    "tickets_locked" : 0,
-    "tickets_booked" : 0
-  },
-  {
-    "category" : "Festival",
-    "name" : "Peace and love", 
-    "description" : "Popfestival", 
-    "date" : new Date(2015, 04, 15, 15, 45, 00),
-    "location" : "Bårlänge",
-    "total_tickets" : 20000,
-    "tickets_locked" : 0,
-    "tickets_booked" : 0
-  },
-  {
-    "category" : "Musik",
-    "name" : "Ironmaiden", 
-    "description" : "Konsert", 
-    "date" : new Date(2018, 04, 10, 15, 45, 00),
-    "location" : "Friends arena, Stockholm",
-    "total_tickets" : 20000,
-    "tickets_locked" : 0,
-    "tickets_booked" : 0
-  },
-  {
-    "category" : "Musik",
-    "name" : "Sabaton", 
-    "description" : "Konsert", 
-    "date" : new Date(2012, 08, 23, 20, 00, 00),
-    "location" : "Palace, Kalmar",
-    "total_tickets" : 500,
-    "tickets_locked" : 0,
-    "tickets_booked" : 0
-  },
-  {
-    "category" : "Musik",
-    "name" : "Stonesour", 
-    "description" : "Konsert", 
-    "date" : new Date(2014, 04, 15, 15, 45, 00),
-    "location" : "Annexet, Stockholm",
-    "total_tickets" : 500,
-    "tickets_locked" : 0,
-    "tickets_booked" : 0
-  }
-  ];
-  for (var i = default_data.length - 1; i >= 0; i--) {
-    Events.insert(default_data[i]);
+  for (var i = defaultEvents.length - 1; i >= 0; i--) {
+    Events.insert(defaultEvents[i]);
   };
 };
-
 //Begin by inserting posts if none exist
 if ( Posts.find({}).count() === 0 ) {
   console.log("inserting default posts!");
@@ -199,35 +104,3 @@ if ( Posts.find({}).count() === 0 ) {
     Posts.insert(defaultPosts[i]);
   };
 };
-/*
-Category : {
-  "Name" : "string"
-};
-
-"Event" : {
-  "category" : string,
-  "name" : string, 
-  "description" : string, 
-  "date" : new Date(),
-  "location" : string,
-  "total_tickets" : int,
-  "tickets_locked" : 0,
-  "tickets_booked" : 0
-};
-
-"Post" : {
-  "title" : string,
-  "date" : new date(),
-  "userId" : string,
-  "content" : string,
-  "comments" : {
-    "userId" : string,
-    "date" : new Date(),
-    "content" : string
-  }
-  ],
-  "likes" : [
-  { "name" : "name" }
-  ]
-};
-*/
