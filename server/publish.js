@@ -8,7 +8,3 @@ Meteor.publish("events", function(){
 Meteor.publish("categories", function() {
 	return Categories.find({});
 });
-
-Meteor.publish("posts", function() {
-	return Posts.find({});
-});
