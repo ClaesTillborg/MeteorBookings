@@ -1,3 +1,6 @@
+/*
+  Server methods
+ */
 Meteor.methods({
   book: function(eventId, amount) { 
     console.log("doBooking!");  

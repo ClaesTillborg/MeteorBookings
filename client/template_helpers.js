@@ -58,7 +58,7 @@ Template.blogPage.postLinks = function() {
 };
 
 Template.blogPage.post = function() {
-	return Posts.find({}, {sort: {date: -1}});
+	return Posts.find({});
 };
 
 Template.blogPage.totalComments = function() {
