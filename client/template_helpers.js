@@ -8,19 +8,19 @@ Kod som körs när modal-templaten är renderad så man fejdar in divven när al
 Template.modal.rendered = function() {
       $('div.modal-box').hide().fadeIn('slow');
 };
-
+//Returns all categories sorted by name
 Template.eventbooking.categories = function () {
 	return Categories.find({}, {sort: {name: 1}});
 };
-
+//Returns the total amount of events
 Template.eventbooking.totalNumberOfEvents = function () {
 	return Events.find({}).count();
 };
-
+//Returns the amount of events related to a category
 Template.eventbooking.numberOfEvents = function () {
 	return Events.find({category: this.name}).count();
 };
-
+//Checks if a category is selected
 Template.eventbooking.isSelectedCategory = function () {
   return Session.get("selectedCategory") || false;
 };
@@ -28,7 +28,7 @@ Template.eventbooking.isSelectedCategory = function () {
 Template.eventbooking.categoryClass = function () {
   return Session.equals("selectedCategory", this.name) ? "category active" : "category";
 };
-
+//Checks if an event is selected
 Template.eventbooking.isSelectedEvent = function () {
   return Session.get("selectedEvent") || false;
 };
