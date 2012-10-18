@@ -8,3 +8,9 @@
 .active {
   background: yellow;
 }
+
+.soldOut {
+	display: block;
+	font-size: larger;
+	color: red;
+}

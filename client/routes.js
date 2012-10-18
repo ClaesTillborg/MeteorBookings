@@ -1,26 +1,25 @@
 var myRoutes = Backbone.Router.extend({
   
   routes: {
-    "":             "start",    
-    ":category":    "category",    // #category
-    ":category/:eventId":       "event"       // #event
+    "":                         "start",
+    ":category":                "category",     // #category
+    ":category/:eventId":       "event"         // #event
   },
-
+//creating the sessions that will be used.
   start: function() {
+    console.log("Creating both sessions");
     Session.set("selectedEvent", null);
     Session.set("selectedCategory", null);
   },
-
+//Setting the selected category and resets the event session.
   category: function(categoryName) {
-    console.log("category route!");
+    console.log("Setting the selected category");
     Session.set("selectedEvent", null);
     Session.set("selectedCategory", categoryName);
   },
-
+//Setting the selected event.
   event: function(category, eventId) {
-    console.log(category);
-    Session.set("selectedCategory", null); 
-    console.log(Session.get("selectedCategory"));
+    console.log("setting selected event!");
     Session.set("selectedEvent", eventId); 
   },
 

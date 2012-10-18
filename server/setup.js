@@ -1,4 +1,17 @@
 /*
+  Server methods
+ */
+Meteor.methods({
+  book: function(eventId, amount) { 
+    console.log("doBooking!");  
+    Events.update({_id: eventId}, {$inc: {tickets_booked: amount}});
+  },
+  unbook: function(eventId, amount) {
+    Events.update({_id: eventId}, {$inc: {tickets_booked: amount}});
+  }
+});  
+
+/*
 
 Exemple of setup funktions
 
@@ -65,133 +78,22 @@ Meteor.startup(function() {
 });
 */
 
+
+
+//============================================================================
+//Feching default data from defaultData.js if none exists
+
 //Begin by inserting categories if none exist
 if ( Categories.find({}).count() === 0 ) {
-  var default_data = [];
   console.log("inserting default categories!");
-  default_data = [
-    { "name" : "Musik" },
-    { "name" : "Festival" },
-    { "name" : "Sport" }
-  ];
-  for (var i = default_data.length - 1; i >= 0; i--) {
-    Categories.insert(default_data[i]);
+  for (var i = defaultCategories.length - 1; i >= 0; i--) {
+    Categories.insert(defaultCategories[i]);
   };
 };
 //Begin by inserting events if none exist
 if ( Events.find({}).count() === 0 ) {
-  var default_data = [];
   console.log("inserting default events!");
-  default_data = [
-  {
-    "category" : "Sport",
-    "name" : "Mjällby AIF - Kalmar FF", 
-    "description" : "Fotboll", 
-    "date" : new Date(2014, 04, 15),
-    "location" : "Hällevik, Sölvesborg",
-    "total_tickets" : 3000,
-    "tickets_locked" : 0,
-    "tickets_booked" : 0
-  },
-  {
-    "category" : "Sport",
-    "name" : "AIK - Djurgården", 
-    "description" : "Fotboll", 
-    "date" : new Date(2014, 04, 15),
-    "location" : "Råsunda, Stockholm",
-    "total_tickets" : 4000,
-    "tickets_locked" : 0,
-    "tickets_booked" : 0
-  },
-  {
-    "category" : "Sport",
-    "name" : "HV71 - MODO", 
-    "description" : "Hockey", 
-    "date" : new Date(),
-    "location" : "Kinnarps arena, Jönköping",
-    "total_tickets" : 4000,
-    "tickets_locked" : 0,
-    "tickets_booked" : 0
-  },
-  {
-    "category" : "Sport",
-    "name" : "Västrafrölunda - Brynäs", 
-    "description" : "Hockey", 
-    "date" : new Date(),
-    "location" : "Scandinavium, Göteborg",
-    "total_tickets" : 4000,
-    "tickets_locked" : 0,
-    "tickets_booked" : 0
-  },
-  {
-    "category" : "Festival",
-    "name" : "Swedenrock", 
-    "description" : "Rockfestival", 
-    "date" : new Date(),
-    "location" : "Norje, Sölvesborg",
-    "total_tickets" : 20000,
-    "tickets_locked" : 0,
-    "tickets_booked" : 0
-  },
-  {
-    "category" : "Festival",
-    "name" : "Peace and love", 
-    "description" : "Popfestival", 
-    "date" : new Date(),
-    "location" : "Bårlänge",
-    "total_tickets" : 20000,
-    "tickets_locked" : 0,
-    "tickets_booked" : 0
-  },
-  {
-    "category" : "Musik",
-    "name" : "Ironmaiden", 
-    "description" : "Konsert", 
-    "date" : new Date(),
-    "location" : "Friends arena, Stockholm",
-    "total_tickets" : 20000,
-    "tickets_locked" : 0,
-    "tickets_booked" : 0
-  },
-  {
-    "category" : "Musik",
-    "name" : "Sabaton", 
-    "description" : "Konsert", 
-    "date" : new Date(),
-    "location" : "Palace, Kalmar",
-    "total_tickets" : 500,
-    "tickets_locked" : 0,
-    "tickets_booked" : 0
-  },
-  {
-    "category" : "Musik",
-    "name" : "Stonesour", 
-    "description" : "Konsert", 
-    "date" : new Date(),
-    "location" : "Annexet, Stockholm",
-    "total_tickets" : 500,
-    "tickets_locked" : 0,
-    "tickets_booked" : 0
-  }
-  ];
-  for (var i = default_data.length - 1; i >= 0; i--) {
-    Events.insert(default_data[i]);
+  for (var i = defaultEvents.length - 1; i >= 0; i--) {
+    Events.insert(defaultEvents[i]);
   };
 };
-
-/*
-Category : {
-  "Name" : "string"
-};
-
-"Event" : {
-    "category" : string,
-    "name" : string, 
-    "description" : string, 
-    "date" : new Date(),
-    "location" : string,
-    "total_tickets" : int,
-    "tickets_locked" : 0,
-    "tickets_booked" : 0
-  };
-*/
