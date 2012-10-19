@@ -1,63 +1,84 @@
 <head>
 	<title>Eventbookning</title>
-	<script type="text/javascript" src="jquery.jrumble.1.3.min.js"></script>
+	<!--<script type="text/javascript" src="jquery.jrumble.1.3.min.js"></script>-->
 </head>
 
-<body>
-	{{>modal}}
+<body>	
 	<div class="container">
-
 		{{> eventbooking}}
 		<footer>Detta bokningssystem har skapats i utvecklingssyfte för kursen <a href="http://coursepress.lnu.se/kurs/moderna-applikationsmiljoer" title="Kursens webbsida">Moderna applikationsmiljöer <span>2DV400</span></a>. Den har i uppgift att visa lite om realtidswebben och hur man med javascripts-ramverket <a href="http://www.meteor.com" title="Meteors webbsida">Meteor</a> kan skapa applikationer som använder sig av just detta. Vi som har skapat denna applikation är Hans Bentlöv och Claes Tillborg och går tredje året på programmet <a href="http://coursepress.lnu.se/program/webbprogrammerare" title="Programmets webbsida">webbprogramering</a> på <a href="http://www.lnu.se" title="Linneuniversitetets webbsida">Linneuniversitetet</a> i Kalmar.</footer>
 	</div>
 </body>
 
-<template name="modal">
-	{{#if isModalActive}}
-	<div class="modal-box wrapper">
-		<div class="inside">
-			<img src="images/warning.png" />
-			<h3>Oops! There's been a problem.</h3>
-			<p>Sorry, but we don't appear to be able to do what you asked. Please submit a bug report.</p>
-			<span><span>Dismiss</span></span>
-			<a href=""><span>Send Bug Report</span></a>
-		</div>
-	</div>
-	{{/if}}
-</div>
-</template>
-	<template name="eventbooking">
-		<header>
-				<h1>Meteor eventbokning - <a href="#" class="pressMe">..</a></h1>
-				<input type="text" id="searchBox" placeholder="Filtrera evenemang"/>
-			</header>
-			<div class="main">
+<template name="finishBookingDialog">
+  <div class="mask"> </div>
+  <div class="modal">
+    <div class="modal-header">
+      <button type="button" class="close done">&times;</button>
+      <h3>Slutför bokningen</h3>
+    </div>
+    <div class="modal-body">
+    	<p>Här kan du välja specifikt vilka platser du önskar. När du är nöjd, fortsätt till betalningen.</p>
+    	<div class="four columns">
+	    	<div id="theTime"></div>
+	    	<label>Namn</label>
+	    	<input type="text" id="finishBookingName" class="">
 
-		<div class="three columns">
-			<ul>
-				<li><a href="#" class="{{categoryClass}} all">Alla evenemang<span> ({{totalNumberOfEvents}})</span></a></li>
-			{{#each categories}}
-			<li><a href="#" class="{{categoryClass}} {{name}}">{{name}}<span> ({{numberOfEvents}})</span></a></li>
-			{{/each}}
-			</ul>
-			{{loginButtons align="right"}}
-		</div>
+	      <label>E-post</label>
+	      <input type="text" id="finishBookingAdress" class="">
+
+	      <label>Betalningsmedel</label>
+	      <input type="radio"> Kortbetalning <br />
+	      <input type="radio"> Postförskott <br />
+	      <input type="radio"> Faktura
+    	</div>
+    	<div class="four columns">
+    		<p><strong>Dina biljetter är preliminärbokade!</strong> Efter 90 sekunder avbryts din preliminärbokning och du får försöka igen!</p><p>Önskar du inte biljetterna tryck här eller avbryt nedan.</p>
+    	</div>
+  </div>
+    <div class="modal-footer">
+    	<a href="#" class="button" style="color: red; float: left">Avbryt bokning</a>
+      <a href="#" class="button book">Bekräfta bokning</a>
+    </div>
+  </div>
+</template>
+
+<template name="eventbooking">
+	{{loginButtons align="left"}}
+	{{#if showFinishBookingDialog}}
+		{{> finishBookingDialog}}
+	{{/if}}
+	<header>
+			<h1>Eventbokning i realtid!</h1>
+			<!--<input type="text" id="searchBox" placeholder="Filtrera evenemang"/>-->
+		</header>
+		<div class="main">
+
+	<div class="three columns">
+		<ul>
+			<li><a href="#" class="{{categoryClass}} all">Alla evenemang<span> ({{totalNumberOfEvents}})</span></a></li>
+		{{#each categories}}
+		<li><a href="#" class="{{categoryClass}} {{name}}">{{name}}<span> ({{numberOfEvents}})</span></a></li>
+		{{/each}}
+		</ul>
 		
-		<div class="thirteen columns">		
-			{{#if isSelectedEvent}}
-			  {{> eventPage}} 
-			{{else}}
-				{{#if isSelectedCategory}}
-				  {{> eventlist}}
-				{{/if}}
+	</div>
+	
+	<div class="thirteen columns">		
+		{{#if isSelectedEvent}}
+		  {{> eventPage}} 
+		{{else}}
+			{{#if isSelectedCategory}}
+			  {{> eventlist}}
 			{{/if}}
-			{{#unless isSelectedCategory}}
-				<p>Startsida</p>
-			{{/unless}}
-		</div>
-		<br class="clear" />
-		</div>
-	</template>
+		{{/if}}
+		{{#unless isSelectedCategory}}
+			<p>Startsida</p>
+		{{/unless}}
+	</div>
+	<br class="clear" />
+	</div>
+</template>
 
 <template name="eventlist">
 

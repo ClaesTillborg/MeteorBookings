@@ -1,13 +1,7 @@
-Template.modal.isModalActive = function() {
-	return Session.equals("isModalActive", true);
+Template.eventbooking.showFinishBookingDialog = function() {
+	return Session.get("showFinishBookingDialog");
 };
 
-/*
-Kod som körs när modal-templaten är renderad så man fejdar in divven när allt i den
- */
-Template.modal.rendered = function() {
-      $('div.modal-box').hide().fadeIn('slow');
-};
 //Returns all categories sorted by name
 Template.eventbooking.categories = function () {
 	return Categories.find({}, {sort: {name: 1}});
@@ -41,6 +35,18 @@ Template.eventbooking.selectedEvent = function () {
   return Events.findOne(Session.get("selectedEvent"));
 };
 
+Template.eventPage.rendered = function() {
+	var count = this.find(".ticketsLeft").innerHTML;
+	if (count === 0 ) {
+
+	};
+};
+
+Template.finishBookingDialog.rendered = function() {
+	var profileName = Meteor.user().profile.name;
+	if (profileName) {this.find("#finishBookingName").value = Meteor.user().profile.name;};
+};
+
 Template.eventlist.event = function () {
   if (Session.get("query")) {
     return Events.find({"name": {"$regex": Session.get("query")}}, {sort: {date: 1, name: 1}});
@@ -65,9 +71,14 @@ Handlebars.registerHelper('formatDate', function(date) {
 });
 
 Handlebars.registerHelper("bookingSection", function(obj) {
-	var ticketsLeft = obj.total_tickets - obj.tickets_booked;
-	var ret = '<span>Biljetter kvar: ' + ticketsLeft + '</span>';
+	var ticketsLeft = obj.total_tickets - (obj.tickets_booked + obj.tickets_locked);
+	var ret = 'Biljetter kvar: <span class="ticketsLeft">' + ticketsLeft + '</span>';
 	var count = 0;
+	
+	if (!Meteor.user()) {
+		ret += '<p><strong>Logga in för att boka</strong></p>';
+		return new Handlebars.SafeString(ret)
+	};
 
 	if (ticketsLeft > 0) {
 		ret += '<label for="select_' + obj._id + '">Antal biljetter</label>';

@@ -8,3 +8,5 @@ jquery
 accounts-ui
 accounts-google
 accounts-base
+accounts-password
+bootstrap

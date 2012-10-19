@@ -8,8 +8,15 @@ Meteor.methods({
   },
   unbook: function(eventId, amount) {
     Events.update({_id: eventId}, {$inc: {tickets_booked: amount}});
+  },
+  fooTimer: function(eventId, amount) {
+    Meteor.setTimeout(function() {
+      Session.set("showFinishBookingDialog", false);
+      console.log("remove booking");
+    }, 2000)
   }
-});  
+}); 
+
 
 /*
 
