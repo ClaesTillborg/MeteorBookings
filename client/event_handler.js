@@ -3,7 +3,6 @@ Template.eventbooking.events({
     Router.setCategory(this.name);
     //Session.set("selectedCategory", this.name);
   },
-
   'click .header': function() {
     Router.setStart();
   },
@@ -31,19 +30,24 @@ Template.eventlist.events({
   'click .setBooking': function(event, template) {
   	//Get number of tickets to book and update the collection object.
     //var numberBooked = parseInt(document.getElementById("select_" + this._id).value);
-    
-    var amountOfTickets = template.find("select").value;
-    Meteor.call("fooTimer", this._id, amountOfTickets);
-    Session.set("showFinishBookingDialog", true);
+    if(Session.get("showFinishBookingDialog")){
+      alert("Avsluta aktuell bokning innan du fortsätter med andra evenemangsbokningar.");
+      return false
+    }
+    var tickets = { eventId: this._id, amount: parseInt(template.find("select").value)};
+    Meteor.call("lock", tickets);
+    Session.set("showFinishBookingDialog", tickets);
   }
 });
 
 Template.finishBookingDialog.events({
   'click .book': function() {
     // lägg till bokningen på användaren alternativt lägg till användaren på biljetten
+    Meteor.call("book", this);
     Session.set("showFinishBookingDialog", false);
   },
-  'click .close': function() {
+  'click .abort': function() {
+    Meteor.call("unLock", this);
     Session.set("showFinishBookingDialog", false);
   }
 });

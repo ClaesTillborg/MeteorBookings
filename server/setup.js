@@ -2,18 +2,26 @@
   Server methods
  */
 Meteor.methods({
-  book: function(eventId, amount) { 
+  lock: function(tickets) {
+    console.log("locking tickets");
+    Events.update({_id: tickets.eventId}, {$inc: {tickets_locked: tickets.amount}});
+  },
+  unLock: function(tickets) {
+    console.log("unlocking tickets");
+    Events.update({_id: tickets.eventId}, {$inc: {tickets_locked: -tickets.amount}});
+  },
+  book: function(tickets) { 
     console.log("doBooking!");  
-    Events.update({_id: eventId}, {$inc: {tickets_booked: amount}});
-  },
-  unbook: function(eventId, amount) {
-    Events.update({_id: eventId}, {$inc: {tickets_booked: amount}});
-  },
-  fooTimer: function(eventId, amount) {
+    Events.update({_id: tickets.eventId}, {$inc: {tickets_booked: tickets.amount, tickets_locked: -tickets.amount}});
+    
     Meteor.setTimeout(function() {
       Session.set("showFinishBookingDialog", false);
       console.log("remove booking");
-    }, 2000)
+      Events.update({_id: tickets.eventId}, {$inc: {tickets_booked: -tickets.amount}});
+    }, 2000);
+  },
+  unBook: function(tickets) {
+    Events.update({_id: tickets.eventId}, {$inc: {tickets_booked: -tickets.amount}});
   }
 }); 
 

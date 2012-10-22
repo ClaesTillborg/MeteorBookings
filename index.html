@@ -11,10 +11,11 @@
 </body>
 
 <template name="finishBookingDialog">
+	{{#with data}}
   <div class="mask"> </div>
   <div class="modal">
     <div class="modal-header">
-      <button type="button" class="close done">&times;</button>
+      <button type="button" class="close done abort">&times;</button>
       <h3>Slutför bokningen</h3>
     </div>
     <div class="modal-body">
@@ -22,7 +23,7 @@
     	<div class="four columns">
 	    	<div id="theTime"></div>
 	    	<label>Namn</label>
-	    	<input type="text" id="finishBookingName" class="">
+	    	<input type="text" id="finishBookingName" class="" value="{{currentUser.profile.name}}">
 
 	      <label>E-post</label>
 	      <input type="text" id="finishBookingAdress" class="">
@@ -33,14 +34,15 @@
 	      <input type="radio"> Faktura
     	</div>
     	<div class="four columns">
-    		<p><strong>Dina biljetter är preliminärbokade!</strong> Efter 90 sekunder avbryts din preliminärbokning och du får försöka igen!</p><p>Önskar du inte biljetterna tryck här eller avbryt nedan.</p>
+    		<p><strong>{{amount}} biljetter är preliminärbokade!</strong> Efter 90 sekunder avbryts din preliminärbokning och du får försöka igen!</p><p>Önskar du inte biljetterna tryck här eller avbryt nedan.</p>
     	</div>
   </div>
     <div class="modal-footer">
-    	<a href="#" class="button" style="color: red; float: left">Avbryt bokning</a>
+    	<a href="#" class="button abort" style="color: red; float: left">Avbryt bokning</a>
       <a href="#" class="button book">Bekräfta bokning</a>
     </div>
   </div>
+  {{/with}}
 </template>
 
 <template name="eventbooking">
@@ -56,7 +58,7 @@
 
 	<div class="three columns">
 		<ul>
-			<li><a href="#" class="{{categoryClass}} all">Alla evenemang<span> ({{totalNumberOfEvents}})</span></a></li>
+			<li><strong>Totalt antal evenemang:<span> ({{totalNumberOfEvents}})</span></strong></li>
 		{{#each categories}}
 		<li><a href="#" class="{{categoryClass}} {{name}}">{{name}}<span> ({{numberOfEvents}})</span></a></li>
 		{{/each}}

@@ -1,5 +1,5 @@
 Template.eventbooking.showFinishBookingDialog = function() {
-	return Session.get("showFinishBookingDialog");
+	return Session.get("showFinishBookingDialog") ? true : false;
 };
 
 //Returns all categories sorted by name
@@ -42,11 +42,6 @@ Template.eventPage.rendered = function() {
 	};
 };
 
-Template.finishBookingDialog.rendered = function() {
-	var profileName = Meteor.user().profile.name;
-	if (profileName) {this.find("#finishBookingName").value = Meteor.user().profile.name;};
-};
-
 Template.eventlist.event = function () {
   if (Session.get("query")) {
     return Events.find({"name": {"$regex": Session.get("query")}}, {sort: {date: 1, name: 1}});
@@ -57,6 +52,11 @@ Template.eventlist.event = function () {
 Template.eventPage.event = function() {
   return Events.findOne(Session.get("selectedEvent"));
 };
+
+Template.finishBookingDialog.data = function() {
+	return Session.get("showFinishBookingDialog");
+};
+
 
 //--------------------------------------------------Helpers----------------------------------------------------->
 Handlebars.registerHelper('formatDate', function(date) {
