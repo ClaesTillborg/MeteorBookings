@@ -40,6 +40,20 @@ Template.eventlist.events({
   }
 });
 
+Template.eventPage.events({
+  'click .setBooking': function(event, template) {
+    //Get number of tickets to book and update the collection object.
+    //var numberBooked = parseInt(document.getElementById("select_" + this._id).value);
+    if(Session.get("showFinishBookingDialog")){
+      alert("Avsluta aktuell bokning innan du fortsätter med andra evenemangsbokningar.");
+      return false
+    }
+    var tickets = { eventId: this._id, amount: parseInt(template.find("select").value)};
+    Meteor.call("lock", tickets);
+    Session.set("showFinishBookingDialog", tickets);
+  }
+});
+
 Template.finishBookingDialog.events({
   'click .book': function() {
     // lägg till bokningen på användaren alternativt lägg till användaren på biljetten
