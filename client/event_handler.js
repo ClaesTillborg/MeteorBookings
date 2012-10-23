@@ -29,7 +29,6 @@ Template.eventlist.events({
   
   'click .setBooking': function(event, template) {
   	//Get number of tickets to book and update the collection object.
-    //var numberBooked = parseInt(document.getElementById("select_" + this._id).value);
     if(Session.get("showFinishBookingDialog")){
       alert("Avsluta aktuell bokning innan du fortsätter med andra evenemangsbokningar.");
       return false
@@ -43,7 +42,6 @@ Template.eventlist.events({
 Template.eventPage.events({
   'click .setBooking': function(event, template) {
     //Get number of tickets to book and update the collection object.
-    //var numberBooked = parseInt(document.getElementById("select_" + this._id).value);
     if(Session.get("showFinishBookingDialog")){
       alert("Avsluta aktuell bokning innan du fortsätter med andra evenemangsbokningar.");
       return false
