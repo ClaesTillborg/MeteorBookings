@@ -60,7 +60,7 @@
 		<ul>
 			<li><strong>Totalt antal evenemang:<span> ({{totalNumberOfEvents}})</span></strong></li>
 		{{#each categories}}
-		<li><a href="#" class="{{categoryClass}} {{name}}">{{name}}<span> ({{numberOfEvents}})</span></a></li>
+		<li><a href="{{name}}" class="{{categoryClass}} {{name}}">{{name}}<span> ({{numberOfEvents}})</span></a></li>
 		{{/each}}
 		</ul>
 		
@@ -87,7 +87,7 @@
 {{#each event}}
 <div class="nine columns alpha">
 	<div class="event">
-		<p><strong><a href="#" class="eventLink">{{name}}</a></strong> <span>{{formatDate date}}</span><br>
+		<p><strong><a href="{{category}}/{{_id}}" class="eventLink">{{name}}</a></strong> <span>{{formatDate date}}</span><br>
 			Plats: {{location}}<br>
 			Beskrivning: {{description}}<br>
 			Låsta biljetter: {{tickets_locked}}</br>

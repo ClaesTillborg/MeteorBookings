@@ -18,7 +18,7 @@ Meteor.methods({
       Session.set("showFinishBookingDialog", false);
       console.log("remove booking");
       Events.update({_id: tickets.eventId}, {$inc: {tickets_booked: -tickets.amount}});
-    }, 2000);
+    }, 30000);
   },
   unBook: function(tickets) {
     Events.update({_id: tickets.eventId}, {$inc: {tickets_booked: -tickets.amount}});

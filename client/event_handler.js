@@ -1,6 +1,6 @@
 Template.eventbooking.events({
   'click .category': function() {
-    Router.setCategory(this.name);
+    //Router.setCategory(this.name);
     //Session.set("selectedCategory", this.name);
   },
   'click .header': function() {
@@ -23,7 +23,7 @@ Template.eventbooking.events({
 
 Template.eventlist.events({
   'click .eventLink': function() {
-    Router.setEvent(this.category, this._id);
+    //Router.setEvent(this.category, this._id);
     //Session.set("selectedEvent", );
   },
   
