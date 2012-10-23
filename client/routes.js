@@ -7,19 +7,16 @@ var myRoutes = Backbone.Router.extend({
   },
 //creating the sessions that will be used.
   start: function() {
-    console.log("Creating both sessions");
     Session.set("selectedEvent", null);
     Session.set("selectedCategory", null);
   },
 //Setting the selected category and resets the event session.
   category: function(categoryName) {
-    console.log("Setting the selected category");
     Session.set("selectedEvent", null);
     Session.set("selectedCategory", categoryName);
   },
 //Setting the selected event.
   event: function(category, eventId) {
-    console.log("setting selected event!");
     Session.set("selectedEvent", eventId); 
   },
 
@@ -28,13 +25,10 @@ var myRoutes = Backbone.Router.extend({
   },
 
   setEvent: function(category, eventId) {
-    console.log("setEvent");
     this.navigate(category + "/" + eventId);
   },
 
   setCategory: function(categoryName) {
-    console.log(categoryName);
-    console.log("setCategory");
     this.history.navigate(categoryName);
   }
 });

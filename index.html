@@ -23,10 +23,10 @@
     	<div class="four columns">
 	    	<div id="theTime"></div>
 	    	<label>Namn</label>
-	    	<input type="text" id="finishBookingName" class="" value="{{currentUser.profile.name}}">
+	    	<input type="text" id="finishBookingName" class="" placeholder="ex. {{currentUser.profile.name}}" value="{{currentUser.profile.name}}">
 
 	      <label>E-post</label>
-	      <input type="text" id="finishBookingAdress" class="">
+	      <input type="text" id="finishBookingAdress" placeholder="E-postadressen..." class="{{currentUser.email}}">
 
 	      <label>Betalningsmedel</label>
 	      <input type="radio"> Kortbetalning <br />
@@ -38,8 +38,8 @@
     	</div>
   </div>
     <div class="modal-footer">
-    	<a href="#" class="button abort" style="color: red; float: left">Avbryt bokning</a>
-      <a href="#" class="button book">Bekräfta bokning</a>
+    	<input type="button" class="button abort" style="color: red; float: left" value="Avbryt bokning">
+      <input type="button" class="button book" value="Bekräfta bokning">
     </div>
   </div>
   {{/with}}
@@ -60,7 +60,7 @@
 		<ul>
 			<li><strong>Totalt antal evenemang:<span> ({{totalNumberOfEvents}})</span></strong></li>
 		{{#each categories}}
-		<li><a href="{{name}}" class="{{categoryClass}} {{name}}">{{name}}<span> ({{numberOfEvents}})</span></a></li>
+		<li><a href="{{name}}" class="category {{activeClass}} {{name}}">{{name}}<span> ({{numberOfEvents}})</span></a></li>
 		{{/each}}
 		</ul>
 		

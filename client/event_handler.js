@@ -28,27 +28,13 @@ Template.eventlist.events({
   },
   
   'click .setBooking': function(event, template) {
-  	//Get number of tickets to book and update the collection object.
-    if(Session.get("showFinishBookingDialog")){
-      alert("Avsluta aktuell bokning innan du fortsätter med andra evenemangsbokningar.");
-      return false
-    }
-    var tickets = { eventId: this._id, amount: parseInt(template.find("select").value)};
-    Meteor.call("lock", tickets);
-    Session.set("showFinishBookingDialog", tickets);
+    SetBooking(this, template);
   }
 });
 
 Template.eventPage.events({
   'click .setBooking': function(event, template) {
-    //Get number of tickets to book and update the collection object.
-    if(Session.get("showFinishBookingDialog")){
-      alert("Avsluta aktuell bokning innan du fortsätter med andra evenemangsbokningar.");
-      return false
-    }
-    var tickets = { eventId: this._id, amount: parseInt(template.find("select").value)};
-    Meteor.call("lock", tickets);
-    Session.set("showFinishBookingDialog", tickets);
+    SetBooking(this, template);
   }
 });
 
@@ -64,5 +50,13 @@ Template.finishBookingDialog.events({
   }
 });
 
-
-
+SetBooking = function(obj, template) {
+  //Get number of tickets to book and update the collection object.
+  if(Session.get("showFinishBookingDialog")){
+    alert("Avsluta aktuell bokning innan du fortsätter med andra evenemangsbokningar.");
+    return false
+  }
+  var tickets = { eventId: obj._id, amount: parseInt(template.find("select").value)};
+  Meteor.call("lock", tickets);
+  Session.set("showFinishBookingDialog", tickets);  
+}

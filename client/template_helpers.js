@@ -3,35 +3,35 @@ Template.eventbooking.showFinishBookingDialog = function() {
 };
 
 //Returns all categories sorted by name
-Template.eventbooking.categories = function () {
+Template.eventbooking.categories = function() {
 	return Categories.find({}, {sort: {name: 1}});
 };
 //Returns the total amount of events
-Template.eventbooking.totalNumberOfEvents = function () {
+Template.eventbooking.totalNumberOfEvents = function() {
 	return Events.find({}).count();
 };
 //Returns the amount of events related to a category
-Template.eventbooking.numberOfEvents = function () {
+Template.eventbooking.numberOfEvents = function() {
 	return Events.find({category: this.name}).count();
 };
 //Checks if a category is selected
-Template.eventbooking.isSelectedCategory = function () {
+Template.eventbooking.isSelectedCategory = function() {
   return Session.get("selectedCategory") || false;
 };
 
-Template.eventbooking.categoryClass = function () {
-  return Session.equals("selectedCategory", this.name) ? "category active" : "category";
+Template.eventbooking.activeClass = function() {
+  return Session.equals("selectedCategory", this.name) ? "active" : "";
 };
 //Checks if an event is selected
-Template.eventbooking.isSelectedEvent = function () {
+Template.eventbooking.isSelectedEvent = function() {
   return Session.get("selectedEvent") || false;
 };
 
-Template.eventbooking.selectedCategory = function () {
+Template.eventbooking.selectedCategory = function() {
   return Categories.findOne(Session.get("selectedCategory"));
 };
 
-Template.eventbooking.selectedEvent = function () {
+Template.eventbooking.selectedEvent = function() {
   return Events.findOne(Session.get("selectedEvent"));
 };
 
