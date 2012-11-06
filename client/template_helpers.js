@@ -1,4 +1,57 @@
-Template.eventbooking.showFinishBookingDialog = function() {
+Template.eventbooking.helpers({
+	showFinishBookingDialog: function() {
+	return Session.get("showFinishBookingDialog") ? true : false;
+	},
+	categories: function() {
+		return Categories.find({}, {sort: {name: 1}});
+	},
+	totalNumberOfEvents: function() {
+		return Events.find({}).count();
+	},
+	numberOfEvents: function() {
+		return Events.find({category: this.name}).count();
+	},
+	isSelectedCategory: function() {
+	  return Session.get("selectedCategory") || false;
+	},
+	activeClass: function() {
+	  return Session.equals("selectedCategory", this.name) ? "active" : "";
+	},
+	isSelectedEvent: function() {
+	  return Session.get("selectedEvent") || false;
+	},
+	selectedCategory: function() {
+	  return Categories.findOne(Session.get("selectedCategory"));
+	},
+	selectedEvent: function() {
+	 return Events.findOne(Session.get("selectedEvent"));
+	}
+});
+
+Template.eventPage.helpers({
+	rendered: function() {
+		var count = this.find(".ticketsLeft").innerHTML;
+		if (count === 0 ) {
+
+		};
+	},
+	event: function() {
+	  return Events.findOne(Session.get("selectedEvent"));
+	}
+});
+
+Template.eventlist.event = function () {
+  if (Session.get("query")) {
+    return Events.find({"name": {"$regex": Session.get("query")}}, {sort: {date: 1, name: 1}});
+  };
+	return Events.find({category: Session.get("selectedCategory")}, {sort: {date: 1, name: 1}});
+};
+
+Template.finishBookingDialog.data = function() {
+	return Session.get("showFinishBookingDialog");
+};
+
+/*Template.eventbooking.showFinishBookingDialog = function() {
 	return Session.get("showFinishBookingDialog") ? true : false;
 };
 
@@ -42,20 +95,11 @@ Template.eventPage.rendered = function() {
 	};
 };
 
-Template.eventlist.event = function () {
-  if (Session.get("query")) {
-    return Events.find({"name": {"$regex": Session.get("query")}}, {sort: {date: 1, name: 1}});
-  };
-	return Events.find({category: Session.get("selectedCategory")}, {sort: {date: 1, name: 1}});
-};
-
 Template.eventPage.event = function() {
   return Events.findOne(Session.get("selectedEvent"));
-};
+};*/
 
-Template.finishBookingDialog.data = function() {
-	return Session.get("showFinishBookingDialog");
-};
+
 
 
 //--------------------------------------------------Helpers----------------------------------------------------->
@@ -81,8 +125,8 @@ Handlebars.registerHelper("bookingSection", function(obj) {
 	};
 
 	if (ticketsLeft > 0) {
-		ret += '<label for="select_' + obj._id + '">Antal biljetter</label>';
-		ret += '<select id="select_' + obj._id + '">';
+		ret += '<label for="' + obj._id + '">Antal biljetter</label>';
+		ret += '<select id="' + obj._id + '">';
 		if (ticketsLeft > 10) {
 			count = 10;
 		}
